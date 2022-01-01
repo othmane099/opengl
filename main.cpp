@@ -104,8 +104,8 @@ void CreateMesh(GLuint* VAO, GLuint* VBO, GLuint* IBO, STRVertex* vertices, unsi
     glEnableVertexAttribArray(2);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
 }
 
 void RenderMesh(GLuint* VAO, GLuint* IBO, GLuint indexCount)
@@ -413,18 +413,18 @@ int main(int argc, char* argv[]) {
     mat4 Projection = perspective(radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
 
     GLuint uniformProjection = 0, uniformModel = 0, uniformView = 0, uniformEyePosition = 0,
-		uniformSpecularIntensity = 0, uniformShininess = 0;
+        uniformSpecularIntensity = 0, uniformShininess = 0;
 
     shinyMaterial = Material(1.0f, 32);
     dullMaterial = Material(0.3f, 4);
 
     mainLight = DirectionalLight(0.0f, 0.0f, 0.0f
-                                ,0.0f, 0.0f,
-                                0.0f, 0.0f, 0.0f);
+        , 0.0f, 0.0f,
+        0.0f, 0.0f, 0.0f);
 
     unsigned int pointLightCount = 0;
     pointLights[0] = PointLight(1.0f, 1.0f, 1.0f,
-        10.5f, 0.0f,
+        1.0f, 10.0f,
         0.0f, 0.0f, 0.0f,
         0.3f, 0.2f, 0.1f);
     pointLightCount++;
@@ -491,7 +491,7 @@ int main(int argc, char* argv[]) {
 
 
         ModelTmp = rotate(ModelTmp, curAngle1 * radians(45.0f), vec3(0.0f, 1.0f, 0.0f));
-        ModelTmp = translate(ModelTmp, vec3(10.0f, 0.0f, 0.0f));
+        ModelTmp = translate(ModelTmp, vec3(5.0f, 0.0f, 0.0f));
         Model = ModelTmp * rotate(curAngle2 * radians(45.0f), vec3(0.0f, 1.0f, 0.0f));
         glUniformMatrix4fv(uniformModel, 1, GL_FALSE, &Model[0][0]);
         dullMaterial.UseMaterial(uniformSpecularIntensity, uniformShininess);
